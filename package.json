@@ -9,6 +9,7 @@
   "author": "Knut Hühne",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.17.4",
     "osmtogeojson": "^2.2.12"
   }
 }
