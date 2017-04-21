@@ -53,14 +53,27 @@ exports.handler = (event, context, callback) => {
       if (data){
           callOverpass(data);
       } else {
-        done(new Error("You need to supply a `data` parameter"));
+        done(new Error("You need to supply a `data` parameter."));
       }
+    };
+
+    const handlePost = function(event){
+        const data = _.get(event, "body");
+        console.log('=====data', data)
+        if (data){
+            callOverpass(data);
+        } else {
+            done(new Error("You need to send data in the function body."));
+        }
     };
 
     switch (event.httpMethod) {
         case 'GET':
             handleGet(event);
             break;
+        case 'POST':
+            handlePost(event)
+            break
         default:
             done(new Error(`Unsupported method "${event.httpMethod}"`));
     }
