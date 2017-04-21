@@ -11,6 +11,6 @@ An example query could look like this:  [https://giluifm80f.execute-api.us-west-
 
 ## Caveats 
 When posting to the default overpass api you can either send an url-encoded body with a `data=` prefix or just send a plain query in the body.
-This proxy only supports the latter so please do not add the `data=` prefix.
+This service only supports the latter so please do not add the `data=` prefix.
 
-⚠️ Note 2: The service expects json data from overpass so you must include `[output:json]` in your query.
+⚠️ Note: The service expects json data from overpass so you must include `[output:json]` in your query.
