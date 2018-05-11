@@ -25,27 +25,20 @@ exports.handler = (event, context, callback) => {
           path: '/cgi/interpreter?data=' + encodeURIComponent(queryString),
         };
 
-        let callback = function(response) {
+        http.get(options, (response) => {
           let str = '';
+          response.on('data', (chunk) => { str += chunk; });
 
-          response.on('data', function (chunk) {
-            str += chunk;
-          });
-
-          response.on('end', function () {
-              let data = "";
+          response.on('end', () => {
               try{
-                  data = JSON.parse(str);
+                  const data = JSON.parse(str);
                   done(null, osmtogeojson(data));
               }
               catch(err){
-                 console.log("ERROR OCCURED");
                  done(new Error(str));
               }
           });
-        };
-
-        http.request(options, callback).end();
+        });
     };
 
     const handleGet = function(event){
