@@ -18,8 +18,8 @@ exports.handler = (event, context, callback) => {
 
     const callOverpass = function(queryString){
         let options = {
-          host: 'overpass.osm.rambler.ru',
-          path: '/cgi/interpreter?data=' + encodeURIComponent(queryString),
+          host: 'overpass-api.de',
+          path: '/api/interpreter?data=' + encodeURIComponent(queryString),
         };
 
         http.get(options, (response) => {
