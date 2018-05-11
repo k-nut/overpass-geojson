@@ -4,9 +4,6 @@ let http = require('http');
 let osmtogeojson = require('osmtogeojson');
 const _ = require('lodash');
 
-
-console.log('Loading function');
-
 exports.handler = (event, context, callback) => {
     const done = (err, res) => callback(null, {
         statusCode: err ? '400' : '200',
@@ -52,7 +49,6 @@ exports.handler = (event, context, callback) => {
 
     const handlePost = function(event){
         const data = _.get(event, "body");
-        console.log('=====data', data)
         if (data){
             callOverpass(data);
         } else {
